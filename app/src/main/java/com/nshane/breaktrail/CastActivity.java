@@ -38,19 +38,20 @@ public class CastActivity extends AppCompatActivity {
         mReceiver = new BroadCastReceiver();
 
 
-
         IntentFilter filter = new IntentFilter();
 
         // 2. 设置接收广播的类型
         filter.addAction("testPro");
+        filter.setPriority(500);
         // 3. 动态注册：调用Context的registerReceiver（）方法
         registerReceiver(mReceiver, filter);
 
 
-
         Intent intent = new Intent();
         intent.setAction("testPro");
+//        intent.setPackage("test1");
         sendBroadcast(intent);
+
 
     }
 

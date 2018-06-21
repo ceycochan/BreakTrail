@@ -11,9 +11,8 @@ import android.util.Log;
 
 public class BroadCastReceiver extends BroadcastReceiver {
 
-
     /**
-     * 默认情况下, 广播接收器运行在UI线程,切勿进行耗时操作
+     * 默认情况下, 广播接收器运行在UI线程,切勿进行耗时操作,10
      * 收到广播后会自动调用该方法
      *
      * @param context
@@ -21,7 +20,6 @@ public class BroadCastReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-
         String action = intent.getAction();
         Log.d("cg", "接收到了广播 动态" + action);
     }
