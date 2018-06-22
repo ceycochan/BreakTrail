@@ -1,15 +1,18 @@
-package com.nshane.breaktrail;
+package com.nshane.breaktrail.ui;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
+
+import com.nshane.breaktrail.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private TextView mTv2ndActivity;
+    private Button mBtnCast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,15 +21,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initView();
 
-
-
-
     }
 
 
-    private void initView(){
-        mTv2ndActivity = findViewById(R.id.tv_subActivity);
-        mTv2ndActivity.setOnClickListener(this);
+    private void initView() {
+        mBtnCast = findViewById(R.id.btn_cast);
+        mBtnCast.setOnClickListener(this);
     }
 
 
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
 
     }
-
 
 
     @Override
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.tv_subActivity:
+            case R.id.btn_cast:
 
                 CastActivity.startActivity(this);
                 Log.d("cg", "点击了2nd");
@@ -57,5 +56,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
     }
 }
