@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.nshane.breaktrail.R;
+import com.nshane.breaktrail.interfaces.LogActivityInterface;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, LogActivityInterface {
 
 
     private Button mBtnCast;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initView() {
         mBtnCast = findViewById(R.id.btn_cast);
         mBtnCast.setOnClickListener(this);
+//        CastActivity.CallBackData.setInterface(this);
     }
 
 
@@ -62,6 +65,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+
+    }
+
+    @Override
+    public void name(String name) {
+//        mBtnCast.setText(name);
+        Toast.makeText(this, "回调到的name" + name, Toast.LENGTH_SHORT).show();
 
     }
 }

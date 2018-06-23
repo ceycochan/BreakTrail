@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BreakTrail</string>
+    <string-array name="items_function">
+        <item>TEST_1</item>
+        <item>TEST_2</item>
+        <item>TEST_3</item>
+        <item>TEST_4</item>
+        <item>TEST_5</item>
+        <item>TEST_6</item>
+        <item>TEST_7</item>
+        <item>TEST_8</item>
+    </string-array>
 </resources>

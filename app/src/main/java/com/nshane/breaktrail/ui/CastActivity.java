@@ -8,20 +8,35 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.nshane.breaktrail.MyBroadCastReceiver;
 import com.nshane.breaktrail.R;
+import com.nshane.breaktrail.adapter.RVAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by bryan on 2018-6-20.
  */
 
-public class CastActivity extends AppCompatActivity {
+public class CastActivity extends AppCompatActivity implements View.OnClickListener, RVAdapter.OnItemClickListener {
 
 
     private MyBroadCastReceiver mReceiver;
     private LocalBroadcastManager localBroadcastManager;
     private BroadcastReceiver mReceiver1;
+
+    private RecyclerView mRV;
+    private RVAdapter mAdapter;
+    private List<String> mInfoList = new ArrayList<>();
+    private Button mBtnCallback;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, CastActivity.class);
@@ -33,6 +48,21 @@ public class CastActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cast);
+        initView();
+    }
+
+
+    private void initView() {
+        mBtnCallback = findViewById(R.id.btn_callback);
+//        mBtnCallback.setOnClickListener(this);
+
+        mRV = findViewById(R.id.rv_test);
+        mRV.setLayoutManager(new LinearLayoutManager(this));
+        mInfoList = Arrays.asList("test_1", "test2", "test_3");
+        mAdapter = new RVAdapter(this, mInfoList);
+        mAdapter.setOnItemClickListener(this);
+        mRV.setAdapter(mAdapter);
+
 
     }
 
@@ -116,6 +146,48 @@ public class CastActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+            case R.id.btn_callback:
+                // TODO: 2018-6-23 回调
+
+//                CallBackData.doCallBack("callback");
+//                finish();
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+        Toast.makeText(this, "长击了：" + position, Toast.LENGTH_SHORT).show();
+    }
+
+
+//    public static class CallBackData {
+//        private static LogActivityInterface mActivityInterface;
+//
+//        public static void setInterface(LogActivityInterface activityInterface) {
+//            mActivityInterface = activityInterface;
+//        }
+//
+//
+//        public static void doCallBack(String str) {
+//            mActivityInterface.name(str);
+//        }
+//    }
 
 
 }
