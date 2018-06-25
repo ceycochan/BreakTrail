@@ -58,7 +58,7 @@ public class CastActivity extends AppCompatActivity implements View.OnClickListe
 
         mRV = findViewById(R.id.rv_test);
         mRV.setLayoutManager(new LinearLayoutManager(this));
-        mInfoList = Arrays.asList("test_1", "test2", "test_3");
+        mInfoList = Arrays.asList("MyView", "test2", "test_3");
         mAdapter = new RVAdapter(this, mInfoList);
         mAdapter.setOnItemClickListener(this);
         mRV.setAdapter(mAdapter);

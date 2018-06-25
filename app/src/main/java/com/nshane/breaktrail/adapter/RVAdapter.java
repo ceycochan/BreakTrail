@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nshane.breaktrail.R;
+import com.nshane.breaktrail.ui.MyViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,14 +40,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
         holder.function.setText(mInfo.get(position));
 
 
-
-        if (mOnItemClickListener!=null){
+        if (mOnItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    mOnItemClickListener.onItemClick(holder.itemView,position);
-                    Toast.makeText(mContext, "xX点击了"+position, Toast.LENGTH_SHORT).show();
+                    mOnItemClickListener.onItemClick(holder.itemView, position);
+//                    Toast.makeText(mContext, "xX点击了"+position, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -55,8 +54,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    mOnItemClickListener.onItemLongClick(holder.itemView,position);
-                    Toast.makeText(mContext, "xX长击了"+position, Toast.LENGTH_SHORT).show();
+                    mOnItemClickListener.onItemLongClick(holder.itemView, position);
+//                    Toast.makeText(mContext, "xX长击了"+position, Toast.LENGTH_SHORT).show();
+
+
+                    if (position == 0) {
+                        MyViewActivity.startActivity(mContext);
+                    }
+
+
                     /**
                      * return false: 会再次吊起一次短按事件, 表示未处理完改时间继续回调其他函数
                      * return true:  只执行长按事件, 时间执行完毕, 不会再调用其他函数
@@ -95,7 +101,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
     private OnItemClickListener mOnItemClickListener;
 
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.mOnItemClickListener = listener;
     }
 
