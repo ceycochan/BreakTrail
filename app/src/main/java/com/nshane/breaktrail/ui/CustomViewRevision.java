@@ -9,21 +9,24 @@ import com.nshane.breaktrail.BaseActivity;
 import com.nshane.breaktrail.R;
 
 /**
- * Created by bryan on 2018-6-25.
+ * Created by Administrator on 2018/7/13 0013.
  */
 
-public class MyViewActivity extends BaseActivity {
+public class CustomViewRevision extends BaseActivity {
 
 
-    public static void startActivity(Context context) {
-        Intent intent = new Intent(context, MyViewActivity.class);
+    public static void intentTo(Context context) {
+        Intent intent = new Intent(context, CustomViewRevision.class);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_view);
+        setContentView(R.layout.activity_custom_revision);
 
     }
+
+
+
 }

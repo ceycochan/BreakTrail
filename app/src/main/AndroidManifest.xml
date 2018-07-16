@@ -46,6 +46,9 @@
             android:name=".ui.MyViewActivity"
             android:configChanges="orientation|keyboardHidden" />
 
+        <activity android:name=".ui.CustomViewRevision"
+            android:configChanges="orientation|keyboardHidden"/>
+
     </application>
 
 </manifest>

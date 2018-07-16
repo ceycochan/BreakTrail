@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nshane.breaktrail.R;
+import com.nshane.breaktrail.ui.CustomViewRevision;
 import com.nshane.breaktrail.ui.MyViewActivity;
 
 import java.util.ArrayList;
@@ -57,14 +58,15 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
                     mOnItemClickListener.onItemLongClick(holder.itemView, position);
 //                    Toast.makeText(mContext, "xX长击了"+position, Toast.LENGTH_SHORT).show();
 
-
                     if (position == 0) {
                         MyViewActivity.startActivity(mContext);
+                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
+                        CustomViewRevision.intentTo(mContext);
+
                     }
 
-
                     /**
-                     * return false: 会再次吊起一次短按事件, 表示未处理完改时间继续回调其他函数
+                     * return false: 会再次吊起一次短按事件, 表示未处理完该事件继续回调其他函数
                      * return true:  只执行长按事件, 时间执行完毕, 不会再调用其他函数
                      */
                     return true;

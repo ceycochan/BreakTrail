@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BreakTrail.iml" filepath="$PROJECT_DIR$/BreakTrail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/BreakTrail.iml" filepath="$PROJECT_DIR$/.idea/BreakTrail.iml" />
+      <module fileurl="file://D:\MyGit\BreakTrail\BreakTrail.iml" filepath="D:\MyGit\BreakTrail\BreakTrail.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

@@ -7,13 +7,13 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.nshane.breaktrail.BaseActivity;
 import com.nshane.breaktrail.MyBroadCastReceiver;
 import com.nshane.breaktrail.R;
 import com.nshane.breaktrail.adapter.RVAdapter;
@@ -26,7 +26,7 @@ import java.util.List;
  * Created by bryan on 2018-6-20.
  */
 
-public class CastActivity extends AppCompatActivity implements View.OnClickListener, RVAdapter.OnItemClickListener {
+public class CastActivity extends BaseActivity implements View.OnClickListener, RVAdapter.OnItemClickListener {
 
 
     private MyBroadCastReceiver mReceiver;
@@ -41,7 +41,6 @@ public class CastActivity extends AppCompatActivity implements View.OnClickListe
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, CastActivity.class);
         context.startActivity(intent);
-
     }
 
     @Override
@@ -58,11 +57,10 @@ public class CastActivity extends AppCompatActivity implements View.OnClickListe
 
         mRV = findViewById(R.id.rv_test);
         mRV.setLayoutManager(new LinearLayoutManager(this));
-        mInfoList = Arrays.asList("MyView", "test2", "test_3");
+        mInfoList = Arrays.asList("MyView", "Custom View Revision", "trail_3");
         mAdapter = new RVAdapter(this, mInfoList);
         mAdapter.setOnItemClickListener(this);
         mRV.setAdapter(mAdapter);
-
 
     }
 
@@ -101,7 +99,7 @@ public class CastActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // 注册源生cast
+    // 注册源生CAST
     private void initCast() {
         // 1. 实例化BroadcastReceiver子类 &  IntentFilter
         mReceiver = new MyBroadCastReceiver();
@@ -154,7 +152,6 @@ public class CastActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.btn_callback:
                 // TODO: 2018-6-23 回调
-
 //                CallBackData.doCallBack("callback");
 //                finish();
                 break;
@@ -167,7 +164,6 @@ public class CastActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "点击了：" + position, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
