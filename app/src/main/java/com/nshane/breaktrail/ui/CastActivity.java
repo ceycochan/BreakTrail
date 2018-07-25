@@ -57,11 +57,10 @@ public class CastActivity extends BaseActivity implements View.OnClickListener, 
 
         mRV = findViewById(R.id.rv_test);
         mRV.setLayoutManager(new LinearLayoutManager(this));
-        mInfoList = Arrays.asList("MyView", "Custom View Revision", "trail_3");
+        mInfoList = Arrays.asList("TRAIL PANEL", "Custom View Revision", "TO BE CONFIRMED");
         mAdapter = new RVAdapter(this, mInfoList);
         mAdapter.setOnItemClickListener(this);
         mRV.setAdapter(mAdapter);
-
     }
 
 
@@ -86,7 +85,7 @@ public class CastActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(mReceiver);
+//        unregisterReceiver(mReceiver);
 
         localBroadcastManager.unregisterReceiver(mReceiver1);
     }

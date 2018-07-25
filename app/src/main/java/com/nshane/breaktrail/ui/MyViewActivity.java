@@ -26,4 +26,8 @@ public class MyViewActivity extends BaseActivity {
         setContentView(R.layout.activity_my_view);
 
     }
+
+
+
+
 }
