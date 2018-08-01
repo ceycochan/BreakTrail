@@ -43,7 +43,7 @@
 
 
         <activity
-            android:name=".ui.MyViewActivity"
+            android:name=".ui.JavaReview"
             android:configChanges="orientation|keyboardHidden" />
 
         <activity android:name=".ui.CustomViewRevision"

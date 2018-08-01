@@ -41,14 +41,11 @@ public class CustomViewRevision extends BaseActivity {
 
 
     private void initPieData() {
-
         mList.add(new PieInfo("a", 6));
         mList.add(new PieInfo("b", 3));
         mList.add(new PieInfo("c", 1));
         mList.add(new PieInfo("d", 9));
         mList.add(new PieInfo("e", 10));
-
-
     }
 
 }

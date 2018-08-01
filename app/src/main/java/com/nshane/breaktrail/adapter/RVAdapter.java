@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.nshane.breaktrail.R;
 import com.nshane.breaktrail.ui.CustomViewRevision;
-import com.nshane.breaktrail.ui.MyViewActivity;
+import com.nshane.breaktrail.ui.JavaReview;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +48,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
 
                     mOnItemClickListener.onItemClick(holder.itemView, position);
 //                    Toast.makeText(mContext, "xX点击了"+position, Toast.LENGTH_SHORT).show();
+
+                    if (position == 0) {
+                        JavaReview.startActivity(mContext);
+                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
+                        CustomViewRevision.intentTo(mContext);
+
+                    }
+
                 }
             });
 
@@ -56,14 +64,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
                 @Override
                 public boolean onLongClick(View v) {
                     mOnItemClickListener.onItemLongClick(holder.itemView, position);
-//                    Toast.makeText(mContext, "xX长击了"+position, Toast.LENGTH_SHORT).show();
 
-                    if (position == 0) {
-                        MyViewActivity.startActivity(mContext);
-                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
-                        CustomViewRevision.intentTo(mContext);
-
-                    }
+//                    if (position == 0) {
+//                        JavaReview.startActivity(mContext);
+//                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
+//                        CustomViewRevision.intentTo(mContext);
+//
+//                    }
 
                     /**
                      * return false: 会再次吊起一次短按事件, 表示未处理完该事件继续回调其他函数
