@@ -7,12 +7,12 @@ import android.support.annotation.Nullable;
 
 import com.nshane.breaktrail.BaseActivity;
 import com.nshane.breaktrail.R;
-import com.nshane.breaktrail.bean.Person;
-import com.nshane.breaktrail.bean.Student;
-import com.nshane.breaktrail.config.StaticConstants;
+import com.nshane.breaktrail.config.Constants;
 import com.nshane.breaktrail.javatest.A;
 import com.nshane.breaktrail.javatest.B;
 import com.nshane.breaktrail.javatest.C;
+import com.nshane.breaktrail.proxytest.Student;
+import com.nshane.breaktrail.proxytest.StudentProxy;
 import com.nshane.breaktrail.utils.LogUtil;
 
 import java.io.UnsupportedEncodingException;
@@ -27,7 +27,7 @@ import java.util.List;
 public class JavaReview extends BaseActivity {
 
 
-    public static String TAG = StaticConstants.TAG1;
+    public static String TAG = Constants.TAG1;
 
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, JavaReview.class);
@@ -40,16 +40,19 @@ public class JavaReview extends BaseActivity {
         setContentView(R.layout.activity_my_view);
 
 //        javaTest();
+
 //        genericsTest();
 
-        staticExtendsTrail();
+//        staticExtendsTrail();
+
+        proxyTest();
 
     }
 
 
     private void javaTest() {
-        Person p1 = new Person(20);
-        Person p2 = new Person(16);
+        com.nshane.breaktrail.bean.Person p1 = new com.nshane.breaktrail.bean.Person(20);
+        com.nshane.breaktrail.bean.Person p2 = new com.nshane.breaktrail.bean.Person(16);
 
         LogUtil.d(TAG, "equals对比" + p1.equals(p2));
         LogUtil.d(TAG, "hashcode对比" + p1.hashCode() + "----" + p2.hashCode());
@@ -61,6 +64,11 @@ public class JavaReview extends BaseActivity {
         LogUtil.d(TAG, "equals对比" + a.equals(b));
         LogUtil.d(TAG, "hashcode对比" + a.hashCode() + "----" + b.hashCode());
 
+
+        int n1 = 6;
+        int n2 = 100;
+
+
         try {
             LogUtil.d(TAG, "中".getBytes("UTF-8").length + "中-8");
             LogUtil.d(TAG, "中中".getBytes("UTF-8").length + "中中-8");
@@ -70,6 +78,11 @@ public class JavaReview extends BaseActivity {
 
             LogUtil.d(TAG, "中".getBytes("Unicode").length + "中Unicode");
             LogUtil.d(TAG, "中中".getBytes("Unicode").length + "中中Unicode");
+
+
+            LogUtil.d(TAG, "中".getBytes("UTF-8").length + "中-8");
+            LogUtil.d(TAG, "中中".getBytes("UTF-8").length + "中中-8");
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -77,32 +90,33 @@ public class JavaReview extends BaseActivity {
 
 
     private void genericsTest() {
-        List<Person> al = new ArrayList<>();
+        List<com.nshane.breaktrail.bean.Person> al = new ArrayList<>();
 
-        al.add(new Person("abc1"));
-        al.add(new Person("abc2"));
-        al.add(new Person("abc3"));
+        al.add(new com.nshane.breaktrail.bean.Person("abc1"));
+        al.add(new com.nshane.breaktrail.bean.Person("abc2"));
+        al.add(new com.nshane.breaktrail.bean.Person("abc3"));
 
-        List<Student> al1 = new ArrayList<>();
-        al1.add(new Student("abc---1"));
-        al1.add(new Student("abc---2"));
-        al1.add(new Student("abc---3"));
+        List<com.nshane.breaktrail.bean.Student> al1 = new ArrayList<>();
+        al1.add(new com.nshane.breaktrail.bean.Student("abc---1"));
+        al1.add(new com.nshane.breaktrail.bean.Student("abc---2"));
+        al1.add(new com.nshane.breaktrail.bean.Student("abc---3"));
 
 
-        Iterator<? extends Person> it = al.iterator();
+        Iterator<? extends com.nshane.breaktrail.bean.Person> it = al.iterator();
 
         while (it.hasNext()) {
             LogUtil.d(TAG, it.next().getName());
         }
 
 
-        List<? extends Student> genList = new ArrayList<>();
+        List<? extends com.nshane.breaktrail.bean.Student> genList = new ArrayList<>();
 
 //        genList.add(new Student("student1"));
 
     }
 
 
+    // 今天变量extends测试
     private void staticExtendsTrail() {
 
         C c = new C();
@@ -124,5 +138,24 @@ public class JavaReview extends BaseActivity {
         b1.staticMethod();
 
     }
+
+
+    private void proxyTest() {
+        // s为被代理的对象,即已有代码在不被更改的情况下，使用代理间接访问
+        Student s = new Student();
+        //创建代理对象
+        StudentProxy proxy = new StudentProxy(s);
+        //调用代理类对象的方法
+        proxy.sayHello("fuck java", 20);
+        System.out.println("**********");
+        proxy.sayGoodbye(true, 100);
+
+        Student s2 = new Student();
+
+
+    }
+
+
+
 
 }
