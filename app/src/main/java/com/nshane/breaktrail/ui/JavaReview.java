@@ -11,11 +11,14 @@ import com.nshane.breaktrail.config.Constants;
 import com.nshane.breaktrail.javatest.A;
 import com.nshane.breaktrail.javatest.B;
 import com.nshane.breaktrail.javatest.C;
+import com.nshane.breaktrail.proxytest.MyInvocationHandler;
+import com.nshane.breaktrail.proxytest.PersonInterface;
 import com.nshane.breaktrail.proxytest.Student;
 import com.nshane.breaktrail.proxytest.StudentProxy;
 import com.nshane.breaktrail.utils.LogUtil;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,6 +47,8 @@ public class JavaReview extends BaseActivity {
 //        genericsTest();
 
 //        staticExtendsTrail();
+
+//        proxyTestStatic();
 
         proxyTest();
 
@@ -116,7 +121,7 @@ public class JavaReview extends BaseActivity {
     }
 
 
-    // 今天变量extends测试
+    // 静态变量extends测试
     private void staticExtendsTrail() {
 
         C c = new C();
@@ -140,7 +145,7 @@ public class JavaReview extends BaseActivity {
     }
 
 
-    private void proxyTest() {
+    private void proxyTestStatic() {
         // s为被代理的对象,即已有代码在不被更改的情况下，使用代理间接访问
         Student s = new Student();
         //创建代理对象
@@ -155,7 +160,30 @@ public class JavaReview extends BaseActivity {
 
     }
 
+    //https://blog.csdn.net/u011784767/article/details/78281384 静动态代理讲解
 
+    private void proxyTest() {
+        // 创建需要被代理的类
+        Student s = new Student();
+
+        // 生成代理类class文件，
+        System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", true);
+        //获得加载被代理类的 类加载器
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        //指明被代理类实现的接口
+        Class<?>[] interfaces = s.getClass().getInterfaces();
+        //创建被代理类的委托类，之后想要调用被代理类的方法时，都会委托给这个类的invoke(Object proxy, Method method, Object[] args)方法
+
+        //InvocationHandler是一个方法
+
+        MyInvocationHandler h = new MyInvocationHandler(s);
+        //生成代理类
+        PersonInterface proxy = (PersonInterface) Proxy.newProxyInstance(loader, interfaces, h);
+        //通过代理类调用  被代理的方法
+        proxy.sayHello("fuck java", 20);
+        proxy.sayGoodbye(true, 100);
+        LogUtil.d(Constants.GENERAL, "end");
+    }
 
 
 }
