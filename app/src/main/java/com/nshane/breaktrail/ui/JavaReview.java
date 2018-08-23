@@ -11,17 +11,23 @@ import com.nshane.breaktrail.config.Constants;
 import com.nshane.breaktrail.javatest.A;
 import com.nshane.breaktrail.javatest.B;
 import com.nshane.breaktrail.javatest.C;
+import com.nshane.breaktrail.objectequlastest.Car;
 import com.nshane.breaktrail.proxytest.MyInvocationHandler;
 import com.nshane.breaktrail.proxytest.PersonInterface;
 import com.nshane.breaktrail.proxytest.Student;
 import com.nshane.breaktrail.proxytest.StudentProxy;
+import com.nshane.breaktrail.threadTest.Customer;
+import com.nshane.breaktrail.threadTest.Producer;
+import com.nshane.breaktrail.threadTest.Ticket;
 import com.nshane.breaktrail.utils.LogUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Created by bryan on 2018-6-25.
@@ -50,7 +56,12 @@ public class JavaReview extends BaseActivity {
 
 //        proxyTestStatic();
 
-        proxyTest();
+//        proxyTest();
+
+//        objectConcerns();
+
+
+        threadTriple();
 
     }
 
@@ -165,7 +176,6 @@ public class JavaReview extends BaseActivity {
     private void proxyTest() {
         // 创建需要被代理的类
         Student s = new Student();
-
         // 生成代理类class文件，
         System.getProperties().put("sun.misc.ProxyGenerator.saveGeneratedFiles", true);
         //获得加载被代理类的 类加载器
@@ -184,6 +194,127 @@ public class JavaReview extends BaseActivity {
         proxy.sayGoodbye(true, 100);
         LogUtil.d(Constants.GENERAL, "end");
     }
+
+
+    private void objectConcerns() {
+        Car car1 = new Car(1);
+        Car car2 = new Car(1);
+        System.out.println(car1.equals(car2));
+        System.out.println(car1 == car2);
+    }
+
+
+    //多线程测试1
+    private void threadTest() {
+
+        Ticket t = new Ticket("AV");
+
+        Thread t1 = new Thread(t);
+        Thread t2 = new Thread(t);
+        Thread t3 = new Thread(t);
+        Thread t4 = new Thread(t);
+        Thread t5 = new Thread(t);
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+
+    }
+
+    //多线程测试2 测试wait 和 notify
+    private void threadTestSub() {
+
+        //  图片下载
+        final Object object = new Object();
+        Thread download = new Thread() {
+            @Override
+            public void run() {
+                System.out.println("开始下载图片");
+                for (int i = 0; i < 101; i += 10) {
+                    System.out.println("down" + i + "%");
+
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                System.out.println("图片下载成功");
+
+                synchronized (object) {
+                    object.notify(); // 唤起
+
+                }
+
+                System.out.println("开始下载附件");
+
+                for (int i = 0; i < 101; i += 10) {
+                    System.out.println("features down" + i + "%");
+
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                System.out.println("附件下载成功");
+            }
+        };
+
+
+        //图片展示
+        Thread show = new Thread() {
+            @Override
+            public void run() {
+                synchronized (object) {
+
+
+                    try {
+                        object.wait();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("show：展示图片");
+                    System.out.println("图片展示完毕");
+                }
+            }
+        };
+
+
+        download.start();
+        show.start();
+
+    }
+
+    //多线程经典案例
+    private void threadTriple() {
+        Queue buffer = new LinkedList<>();
+
+        int maxSize = 10;
+
+        Thread t1 = new Thread(new Producer(buffer, maxSize));
+
+        Thread t2 = new Thread(new Customer(buffer, maxSize));
+
+        t1.start();
+
+        t2.start();
+
+    }
+
+    //线程关闭测试
+    private void stopThread() {
+
+        boolean isDestroy = false;
+
+    }
+
 
 
 }
