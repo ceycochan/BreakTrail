@@ -292,7 +292,7 @@ public class JavaReview extends BaseActivity {
 
     }
 
-    //多线程经典案例
+    //muly
     private void threadTriple() {
         Queue buffer = new LinkedList<>();
 
