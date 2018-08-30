@@ -1,6 +1,7 @@
 package com.nshane.breaktrail.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nshane.breaktrail.R;
+import com.nshane.breaktrail.activityComm.ActivityA;
 import com.nshane.breaktrail.ui.CustomViewRevision;
 import com.nshane.breaktrail.ui.JavaReview;
+import com.nshane.breaktrail.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +54,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
 
                     if (position == 0) {
                         JavaReview.startActivity(mContext);
-                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
+                    } else if (position==1) {
+
                         CustomViewRevision.intentTo(mContext);
+
+                    } else if (position == 2) {
+
+                        mContext.startActivity(new Intent(mContext, ActivityA.class));
 
                     }
 

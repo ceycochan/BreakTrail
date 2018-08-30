@@ -46,8 +46,16 @@
             android:name=".ui.JavaReview"
             android:configChanges="orientation|keyboardHidden" />
 
-        <activity android:name=".ui.CustomViewRevision"
-            android:configChanges="orientation|keyboardHidden"/>
+        <activity
+            android:name=".ui.CustomViewRevision"
+            android:configChanges="orientation|keyboardHidden" />
+
+
+        <activity
+            android:name=".activityComm.ActivityA"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".activityComm.ActivityB" />
 
     </application>
 
