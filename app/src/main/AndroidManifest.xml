@@ -57,6 +57,9 @@
 
         <activity android:name=".activityComm.ActivityB" />
 
+        <activity android:name=".activityComm.ActivityC" />
+
+
     </application>
 
 </manifest>
