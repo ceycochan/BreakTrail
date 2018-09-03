@@ -13,4 +13,6 @@ public class Constants {
     public static String TAG4 = "View1        [码农]";
 
 
+    public static String INITMODE = "mode";
+
 }

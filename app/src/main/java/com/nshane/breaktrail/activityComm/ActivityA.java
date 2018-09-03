@@ -55,7 +55,6 @@ public class ActivityA extends BaseActivity {
                 startActivityForResult(intent, REQUESTCODE);
 
 
-
                 break;
         }
     }
@@ -76,10 +75,6 @@ public class ActivityA extends BaseActivity {
             }
         }
     }
-
-
-    
-
 
 
 }

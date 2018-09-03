@@ -40,6 +40,7 @@ public class ActivityC extends BaseActivity {
 
 
         tvValueC.setText("收到B传递:" + msg);
+        // C跳转回B by broadcastReceiver
         btnTrans.setText("转回B");
 
     }
@@ -52,9 +53,8 @@ public class ActivityC extends BaseActivity {
 
                 break;
             case R.id.btn_trans:
-
                 Intent intent = new Intent("com.action.broadcast");
-                intent.putExtra("bitch_1", "hello");
+                intent.putExtra("bitch_1", "fuck");
                 sendBroadcast(intent);
                 finish();
                 break;

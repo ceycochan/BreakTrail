@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * Created by bryan on 2018-8-30.
  */
 
-public class ActivityB extends BaseActivity  {
+public class ActivityB extends BaseActivity implements MyReceiver.Message {
 
 
     @BindView(R.id.tv_value_b)
@@ -37,7 +37,7 @@ public class ActivityB extends BaseActivity  {
 
     private String bitch_1;
 
-    private String str = "world";
+    private String str = "hello";
 
     private MyReceiver receiver;
 
@@ -61,6 +61,11 @@ public class ActivityB extends BaseActivity  {
         registerReceiver(receiver, intentFilter);
 
 
+        //因需要注入message ,故不能再清单静态注册, 只能动态
+
+        receiver.setMessage(this);
+
+
         bitch_1 = getIntent().getStringExtra("bitch_1");
         btnCastTrans.setText("跳转到C");
 
@@ -81,10 +86,10 @@ public class ActivityB extends BaseActivity  {
 
             case R.id.btn_cast_trans:
 
+                tv.setText(str);
 
                 Intent intentCast = new Intent(this, ActivityC.class);
                 intentCast.putExtra("bitch_1", str);
-                tv.setText(str);
                 startActivity(intentCast);
                 break;
         }
@@ -94,5 +99,14 @@ public class ActivityB extends BaseActivity  {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(receiver);
+    }
+
+
+    //这里获取
+    @Override
+    public void getMsg(String str) {
+
+        tv.append(str);
+
     }
 }
