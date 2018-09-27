@@ -12,7 +12,6 @@ import com.nshane.breaktrail.R;
 import com.nshane.breaktrail.activityComm.ActivityA;
 import com.nshane.breaktrail.ui.CustomViewRevision;
 import com.nshane.breaktrail.ui.JavaReview;
-import com.nshane.breaktrail.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +75,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
 //                    if (position == 0) {
 //                        JavaReview.startActivity(mContext);
 //                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
-//                        CustomViewRevision.intentTo(mContext);
+//                        CustomViewR evision.intentTo(mContext);
 //
 //                    }
 
