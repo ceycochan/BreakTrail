@@ -57,7 +57,7 @@ public class CastActivity extends BaseActivity implements View.OnClickListener, 
 
         mRV = findViewById(R.id.rv_test);
         mRV.setLayoutManager(new LinearLayoutManager(this));
-        mInfoList = Arrays.asList("JAVA REVIEW", "Custom View Revision", "Activity通信");
+        mInfoList = Arrays.asList("TRAIL PANEL", "Custom View Revision", "静态内部类的设计意图");
         mAdapter = new RVAdapter(this, mInfoList);
         mAdapter.setOnItemClickListener(this);
         mRV.setAdapter(mAdapter);

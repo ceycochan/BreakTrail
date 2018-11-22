@@ -24,13 +24,12 @@
 
 
             <Button
-                android:id="@+id/btn_mode"
+                android:id="@+id/btn_digui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="InitMode"
-                android:textAllCaps="false" />
-
+                android:text="递归" />
         </LinearLayout>
+
 
     </ScrollView>
 

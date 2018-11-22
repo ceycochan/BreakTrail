@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @BindView(R.id.btn_mode)
     Button btnMode;
     private Button mBtnCast;
+    private Button mBtnDiGui;
 
     private String TAG = "MainActivity";
 
@@ -53,6 +54,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mBtnCast = findViewById(R.id.btn_cast);
         mBtnCast.setOnClickListener(this);
 //        CastActivity.CallBackData.setInterface(this);
+
+        mBtnDiGui = findViewById(R.id.btn_digui);
+        mBtnDiGui.setOnClickListener(this);
     }
 
 
@@ -128,10 +132,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         int id = v.getId();
         switch (id) {
             case R.id.btn_cast:
-
                 CastActivity.startActivity(this);
                 Log.d("cg", "点击了2nd");
                 break;
+            case R.id.btn_digui:
+                Intent i = new Intent("com.digui.activity");
+                startActivity(i);
+                break;
+
             default:
                 break;
 

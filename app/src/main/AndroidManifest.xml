@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard">
+            android:configChanges="orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,8 +22,7 @@
         </activity>
 
 
-        <activity android:name=".ui.CastActivity"
-            android:launchMode="standard"/>
+        <activity android:name=".ui.CastActivity" />
 
         <!--静态注册为常驻广播-->
         <!--<receiver-->
@@ -44,26 +43,23 @@
 
 
         <activity
-            android:name=".ui.JavaReview"
+            android:name=".ui.MyViewActivity"
             android:configChanges="orientation|keyboardHidden" />
 
         <activity
             android:name=".ui.CustomViewRevision"
             android:configChanges="orientation|keyboardHidden" />
 
-
         <activity
-            android:name=".activityComm.ActivityA"
-            android:launchMode="singleTask" />
+            android:name=".ui.DiGuiActivity"
+            android:configChanges="keyboardHidden|orientation">
 
-        <activity android:name=".activityComm.ActivityB" />
+            <intent-filter>
+                <action android:name="com.digui.activity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
-        <activity android:name=".activityComm.ActivityC" />
-
-        <activity android:name=".activityComm.ActivityE" />
-
-        <activity android:name=".initMode.ActivityStandard"
-            android:launchMode="standard"/>
+        </activity>
 
     </application>
 

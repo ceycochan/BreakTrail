@@ -1,17 +1,17 @@
 package com.nshane.breaktrail.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nshane.breaktrail.R;
-import com.nshane.breaktrail.activityComm.ActivityA;
 import com.nshane.breaktrail.ui.CustomViewRevision;
-import com.nshane.breaktrail.ui.JavaReview;
+import com.nshane.breaktrail.ui.MyViewActivity;
+import com.nshane.breaktrail.ui.StaticInnerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,22 +47,13 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    /**
+                     * 1.Toast 只用于测试adapter下可用
+                     * 2.接口回调下的toast优先于adapter执行
+                     * 3.
+                     */
                     mOnItemClickListener.onItemClick(holder.itemView, position);
-//                    Toast.makeText(mContext, "xX点击了"+position, Toast.LENGTH_SHORT).show();
-
-                    if (position == 0) {
-                        JavaReview.startActivity(mContext);
-                    } else if (position==1) {
-
-                        CustomViewRevision.intentTo(mContext);
-
-                    } else if (position == 2) {
-
-                        mContext.startActivity(new Intent(mContext, ActivityA.class));
-
-                    }
-
+                    Toast.makeText(mContext, "xX点击了"+position, Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -71,17 +62,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
                 @Override
                 public boolean onLongClick(View v) {
                     mOnItemClickListener.onItemLongClick(holder.itemView, position);
+//                    Toast.makeText(mContext, "xX长击了"+position, Toast.LENGTH_SHORT).show();
 
-//                    if (position == 0) {
-//                        JavaReview.startActivity(mContext);
-//                    } else if (holder.function.getText().toString().equalsIgnoreCase(mInfo.get(position))) {
-//                        CustomViewR evision.intentTo(mContext);
-//
-//                    }
+                    if (position == 0) {
+                        MyViewActivity.startActivity(mContext);
+                    } else if (position==1) {
+                        CustomViewRevision.intentTo(mContext);
+
+                    }else if (position==2){
+                        StaticInnerActivity.intentTo(mContext);
+                    }
 
                     /**
-                     * return false: 会再次吊起一次短按事件, 表示未处理完该事件继续回调其他函数
-                     * return true:  只执行长按事件, 时间执行完毕, 不会再调用其他函数
+                     * 1.长按事件默认要求返回 boolean值
+                     * 2.return false: 会再次吊起一次短按事件, 表示未处理完该事件继续回调其他函数
+                     * 3.return true:  只执行长按事件, 时间执行完毕, 不会再调用其他函数
                      */
                     return true;
                 }
