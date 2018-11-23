@@ -28,6 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="递归" />
+
+
+            <Button
+                android:id="@+id/btn_huiwen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="回文"/>
         </LinearLayout>
 
 

@@ -42,9 +42,9 @@
         <!--</receiver>-->
 
 
-        <activity
-            android:name=".ui.MyViewActivity"
-            android:configChanges="orientation|keyboardHidden" />
+        <!--<activity-->
+            <!--android:name=".ui.MyViewActivity"-->
+            <!--android:configChanges="orientation|keyboardHidden" />-->
 
         <activity
             android:name=".ui.CustomViewRevision"
@@ -59,6 +59,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
+        </activity>
+
+
+        <activity
+            android:name=".activityComm.HuiWenActivity"
+            android:configChanges="keyboardHidden|orientation">
+            <intent-filter>
+                <action android:name="com.huiwen.activity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
     </application>

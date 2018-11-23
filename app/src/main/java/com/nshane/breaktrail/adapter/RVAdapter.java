@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.nshane.breaktrail.R;
 import com.nshane.breaktrail.ui.CustomViewRevision;
-import com.nshane.breaktrail.ui.MyViewActivity;
+//import com.nshane.breaktrail.ui.MyViewActivity;
 import com.nshane.breaktrail.ui.StaticInnerActivity;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.FunctionVH> {
 //                    Toast.makeText(mContext, "xX长击了"+position, Toast.LENGTH_SHORT).show();
 
                     if (position == 0) {
-                        MyViewActivity.startActivity(mContext);
+//                        MyViewActivity.startActivity(mContext);
                     } else if (position==1) {
                         CustomViewRevision.intentTo(mContext);
 

@@ -6,9 +6,17 @@ package com.nshane.breaktrail.utils;
 
 public class LocalUtils {
 
+
+    /**
+     * 该方法待改进
+     * @param ladder
+     * @param maxJump
+     * @return
+     */
+
     //递归方法处理爬楼梯算法问题
     public static int calculateStair(int ladder, int maxJump) {
-        int jumpWay = 0;
+        int jump = 0;
         if (ladder == 0) {
             return 1;
         }
@@ -16,16 +24,20 @@ public class LocalUtils {
         //剩下的楼梯大于最大可跳跃数
         if (ladder >= maxJump) {
 
+
+            /**
+             * 赋值运算符：a+=5---> a=a+5;
+             */
             for (int i = 1; i < maxJump; i++) {
-                jumpWay += calculateStair(ladder - i, maxJump);
+                jump += calculateStair(ladder - i, maxJump);
             }
 
         } else {
             //剩下的楼梯不足最大可跳跃数
-            jumpWay = calculateStair(ladder, ladder);
+            jump = calculateStair(ladder, ladder);
         }
 
-        return jumpWay;
+        return jump;
 
     }
 
@@ -53,7 +65,5 @@ public class LocalUtils {
 
 
     //判断是否为回文结构,也是排序练习
-
-
 
 }
